@@ -12,7 +12,7 @@ jobs:
       - name: Checkout source repository
         uses: actions/checkout@v3
         with:
-          repository: hsph-bst236/course-materials
+          repository: hsph-bst236/HW4_Bit_process
           token: ${{ secrets.GITHUB_PAT }}
           path: source-repo
           
