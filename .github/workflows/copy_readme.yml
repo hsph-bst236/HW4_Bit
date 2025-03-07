@@ -15,6 +15,7 @@ jobs:
           repository: hsph-bst236/HW4_Bit_process
           token: ${{ secrets.GITHUB_PAT }}
           path: source-repo
+          fetch-depth: 1
           
       - name: Checkout current repository
         uses: actions/checkout@v3
