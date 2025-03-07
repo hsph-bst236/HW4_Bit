@@ -55,6 +55,8 @@ This formula computes the within-cluster SSE in constant time from the prefix su
 
 The key to optimizing the DP is to exploit the monotonicity of the optimal partition point as i grows. Intuitively, if $opt(m,i)$ is the index j that gives the minimum for $DP[i][m]$ (i.e. the optimal start of the last cluster for i points and m clusters), it turns out that $opt(m,i)$ will non-decrease as i increases under this cost function. In other words, the best split point for a larger index i is at least as far right as the best split for a smaller index.
 
+More reading materials for DnC DP can be found [here](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html) and [here](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
+
 This property holds here because the cost function (SSE) satisfies the quadrangle inequality (a form of convexity on contiguous segments).
 
 How this helps: If $opt(m,i_0)=j_0$, then when computing $DP[i][m]$ for any $i>i_0$, we only need to consider split positions $j\geq j_0$. We can prune transitions that go left of the previous optimum.
