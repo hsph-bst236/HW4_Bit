@@ -55,7 +55,6 @@ This formula computes the within-cluster SSE in constant time from the prefix su
 
 The key to optimizing the DP is to exploit the monotonicity of the optimal partition point as i grows. Intuitively, if $opt(m,i)$ is the index j that gives the minimum for $DP[i][m]$ (i.e. the optimal start of the last cluster for i points and m clusters), it turns out that $opt(m,i)$ will non-decrease as i increases under this cost function. In other words, the best split point for a larger index i is at least as far right as the best split for a smaller index.
 
-More reading materials for DnC DP can be found [here](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html) and [here](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
 
 This property holds here because the cost function (SSE) satisfies the quadrangle inequality (a form of convexity on contiguous segments).
 
@@ -68,6 +67,8 @@ This monotonicity enables using a divide-and-conquer DP approach (also known as 
 2. Once $opt(m,mid)$ is found, use it to narrow down the search space for the left half (i < mid) and right half (i > mid). Recursively compute those halves, carrying the constrained j-range for each.
 
 By always narrowing the j-range using the monotonicity, we ensure each potential split index is considered only a constant number of times across the entire row computation. This yields roughly O(n) work for each of the k clusters (rather than O(n²)), resulting in about O(n·k) time overall (with at most a very small additional log factor in the recursion). In fact, an optimal 1D k-means algorithm by Xiaolin Wu (1991) uses a matrix-search divide-and-conquer technique to achieve linear time per cluster. Modern implementations report an O(n·k + n log n) runtime, which for practical purposes is close to linear in n for each k.
+
+More reading materials for DnC DP can be found [here](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html) and [here](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
 
 ### Algorithm Outline
 
