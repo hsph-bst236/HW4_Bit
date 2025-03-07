@@ -87,11 +87,3 @@ Using the above ideas, we can implement the function kmeans_1d(points, cluster_n
    - Initially, call compute(m, m, n, opt_left = m, opt_right = n) for each m. (The smallest j we can have is m because we need at least one point per cluster.)
 
 5. **Reconstruct Clusters**: After filling the DP table for m = k and i = n (which gives the minimum cost), backtrack using the Opt table to get cluster boundaries. Start from i = n and m = k: let j = Opt[k][n]. This means the k-th cluster runs from point j to n. Then set i = j-1 and m = k-1, and repeat: for that state, j = Opt[m][i] gives the start of the m-th cluster. Continue until m = 1. This yields the cluster boundary indices in reverse order. Finally, construct the list of clusters by slicing the original points list according to these boundaries.
-
-### Implementation Notes
-
-**Complexity**: The above algorithm runs in O(n·k) time on average, thanks to the divide-and-conquer DP optimization leveraging monotonicity. In practice, the complexity is often quoted as O(n·k + n log n) due to the recursion overhead, but this is nearly linear in n for each cluster and far more efficient than O(n²·k). Such an optimal 1D clustering approach was first described by Xiaolin Wu (1991) and later presented by Grønlund et al. (2017), improving upon the earlier O(n²·k) DP solutions.
-
-**Memory**: We use O(n·k) space for the DP and split index tables, which is acceptable given the problem constraints (the question explicitly allows optimizing speed at the cost of memory). Storing the entire DP table isn't strictly necessary – one can compute in a rolling array manner – but having it and the Opt table makes backtracking simpler. The space trade-off avoids complex memory optimizations and keeps the implementation clear.
-
-**Different cluster sizes**: Because we do not constrain cluster lengths, the resulting clusters can indeed have different sizes. The DP naturally finds the cost-minimizing split, whether that yields equal-size clusters or not.
