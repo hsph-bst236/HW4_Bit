@@ -30,14 +30,14 @@ $$
 DP[i][m] = \min_{m \leq j \leq i} (DP[j-1][m-1] + d(x_j,\ldots,x_i))
 $$
 
-where $d(x_j,\ldots,x_i)$ is the cost (sum of squared distances) of assigning points $x_j \ldots x_i$ to a single cluster. The base cases are $DP[0][0]=0$ (zero points in zero clusters costs 0) and $DP[i][0]=\infty$ for $i>0$ (cannot cluster >0 points into 0 clusters). Likewise, $DP[0][m]=\infty$ for $m>0$. Ultimately, $DP[n][k]$ (with n = number of points) gives the minimum cost for k clusters.
+where $d(x_j,\ldots,x_i)$ is the weighted cost (sum of squared distances) of assigning points $x_j \ldots x_i$ to a single cluster. The base cases are $DP[0][0]=0$ (zero points in zero clusters costs 0) and $DP[i][0]=\infty$ for $i>0$ (cannot cluster >0 points into 0 clusters). Likewise, $DP[0][m]=\infty$ for $m>0$. Ultimately, $DP[n][k]$ (with n = number of points) gives the minimum cost for k clusters.
 
 ### Contiguous clusters
 Because the input points are sorted, the optimal clustering will group contiguous points. This is why we restrict that the last cluster spans a contiguous interval $j\ldots i$. Contiguous clusters simplify cost computation and reduce the search space drastically (no need to consider non-contiguous groupings).
 
 ### Efficient Cost Computation for a Cluster
 
-The cost $d(x_j,\ldots,x_i)$ is defined as the sum of squared distances of points $x_j$ through $x_i$ from their mean. We can compute this in O(1) time with precomputed prefix sums:
+The cost $d(x_j,\ldots,x_i)$ is defined as the weighted sum of squared distances of points $x_j$ through $x_i$ from their mean. We can compute this in O(1) time with precomputed prefix sums:
 
 Let $P[t]=\sum_{r=1}^t x_r$ (prefix sum up to index t) and $Q[t]=\sum_{r=1}^t x_r^2$ (prefix sum of squares).
 
