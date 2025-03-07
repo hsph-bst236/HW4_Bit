@@ -46,7 +46,7 @@ For any segment $j\ldots i$, the sum is $S=P[i]-P[j-1]$ and the sum of squares i
 The mean of points $x_j\ldots x_i$ is $\mu=S/n_{seg}$. The sum of squared errors (SSE) for this segment is:
 
 $$
-d(x_j,\ldots,x_i) = \sum_{r=j}^i (x_r-\mu)^2 = (Q[i]-Q[j-1])-\frac{S^2}{n_{seg}}
+ \sum_{r=j}^i (x_r-\mu)^2 = (Q[i]-Q[j-1])-\frac{S^2}{n_{seg}}
 $$
 
 This formula computes the within-cluster SSE in constant time from the prefix sums. We can prepare the prefix arrays in O(n) time. Using such O(1) cost lookup, a direct DP implementation would take O(n²·k) time in the worst case, because for each state $DP[i][m]$ we might scan a range of j. We need to reduce this using a smarter optimization.
