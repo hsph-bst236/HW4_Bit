@@ -66,7 +66,7 @@ This monotonicity enables using a divide-and-conquer DP approach (also known as 
 
 2. Once $opt(m,mid)$ is found, use it to narrow down the search space for the left half (i < mid) and right half (i > mid). Recursively compute those halves, carrying the constrained j-range for each.
 
-By always narrowing the j-range using the monotonicity, we ensure each potential split index is considered only a constant number of times across the entire row computation. This yields roughly O(n) work for each of the k clusters (rather than O(n²)), resulting in about O(n·k) time overall (with at most a very small additional log factor in the recursion). In fact, an optimal 1D k-means algorithm by Xiaolin Wu (1991) uses a matrix-search divide-and-conquer technique to achieve linear time per cluster. Modern implementations report an O(n·k + n log n) runtime, which for practical purposes is close to linear in n for each k.
+By always narrowing the j-range using the monotonicity, we ensure each potential split index is considered only a constant number of times across the entire row computation. This yields roughly O(n) work for each of the k clusters (rather than O(n²)), resulting in about O(n·k) time overall (with at most a very small additional log factor in the recursion). 
 
 More reading materials for DnC DP can be found [here](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html) and [here](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
 
